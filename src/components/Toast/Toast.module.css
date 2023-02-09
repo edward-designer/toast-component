@@ -7,7 +7,7 @@
   color: black;
   color-scheme: light;
   background: white;
-  max-width: 100%;
+  max-width: 350px;
   width: 350px;
   box-shadow: var(--shadow-elevation-medium);
 }
@@ -16,6 +16,8 @@
   flex: 1;
   padding: 12px 0px;
   font-weight: 600;
+  word-wrap: break-word;
+  overflow-x: hidden;
 }
 
 .iconContainer {

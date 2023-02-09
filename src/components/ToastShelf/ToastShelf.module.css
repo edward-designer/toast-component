@@ -19,3 +19,6 @@
   animation: toast 800ms cubic-bezier(0, 0.46, 0, 1.04) both;
   will-change: transform;
 }
+.toastWrapper:empty {
+  display: none;
+}
