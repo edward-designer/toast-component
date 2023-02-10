@@ -18,22 +18,33 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ children, variant }) {
-  const [isClosed, setIsClosed] = React.useState(false);
-  if (isClosed) return;
+function Toast({ children, variant, dismissThisToast }) {
+  {
+    /*React.useEffect(() => {
+    const timeoutId = window.setTimeout(dismissThisToast, 5000);
+    return () => window.clearTimeout(timeoutId);
+  }, [dismissThisToast]);*/
+  }
 
   const Tag = ICONS_BY_VARIANT[variant];
-  if (Tag === undefined) throw new Error("Invalid variant");
+  if (Tag === undefined) throw new Error(`Invalid variant: ${variant}`);
 
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>
         <Tag size={24} />
       </div>
-      <p className={styles.content}>{children}</p>
-      <button className={styles.closeButton} onClick={() => setIsClosed(true)}>
+      <p className={styles.content}>
+        <VisuallyHidden>{variant} -</VisuallyHidden>
+        {children}
+      </p>
+      <button
+        className={styles.closeButton}
+        onClick={dismissThisToast}
+        aria-label="Dismiss message"
+        aria-live="off"
+      >
         <X size={24} />
-        <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
     </div>
   );
